@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/patrick/aplicativos/jogodavelha/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "/home/patrick/Documentos/aplicativos/jogo-da-veia/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
                     "source": "/home/patrick/.gradle/caches/transforms-2/files-2.1/929c0686736f5235f65f4c25066b00af/res/values-en-rCA/values-en-rCA.xml",

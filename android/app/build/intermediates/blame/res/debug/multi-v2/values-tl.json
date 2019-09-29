@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/patrick/aplicativos/jogodavelha/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml",
+            "outputFile": "/home/patrick/Documentos/aplicativos/jogo-da-veia/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "/home/patrick/.gradle/caches/transforms-2/files-2.1/7297fffa05e692f52f49d54de3c7d25c/res/values-tl/values-tl.xml",

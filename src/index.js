@@ -18,104 +18,150 @@ export default class jogodavelha extends Component {
         b3: '',  
         c1: '',  
         c2: '',  
-        c3: ''  
+        c3: '',
+        vencedor: ''  
       };
-      this.clicou = this.clicou.bind(this);
+      this.click = this.click.bind(this);
+      this.restart = this.restart.bind(this);
     }
 
-    clicou(s){
+    click(s){
         let state = this.state;
         if (eval('state.'+s) == '') {
             eval('state.'+s+' = state.vez');
             state.vez == 'x' ? state.vez = 'o' : state.vez = 'x'; 
         }
+        
+        if ((state.a1 == 'x' && state.b1 == 'x' && state.c1 == 'x') ||
+            (state.a2 == 'x' && state.b2 == 'x' && state.c2 == 'x') || 
+            (state.a3 == 'x' && state.b3 == 'x' && state.c3 == 'x') ||
+            (state.a1 == 'x' && state.a2 == 'x' && state.a3 == 'x') ||
+            (state.b1 == 'x' && state.b2 == 'x' && state.b3 == 'x') ||
+            (state.c1 == 'x' && state.c2 == 'x' && state.c3 == 'x') || 
+            (state.a1 == 'x' && state.b2 == 'x' && state.c3 == 'x') ||
+            (state.a3 == 'x' && state.b2 == 'x' && state.c1 == 'x')){
+              state.vencedor = 'X';
+        }
+        if ((state.a1 == 'o' && state.b1 == 'o' && state.c1 == 'o') ||
+            (state.a2 == 'o' && state.b2 == 'o' && state.c2 == 'o') || 
+            (state.a3 == 'o' && state.b3 == 'o' && state.c3 == 'o') ||
+            (state.a1 == 'o' && state.a2 == 'o' && state.a3 == 'o') ||
+            (state.b1 == 'o' && state.b2 == 'o' && state.b3 == 'o') ||
+            (state.c1 == 'o' && state.c2 == 'o' && state.c3 == 'o') || 
+            (state.a1 == 'o' && state.b2 == 'o' && state.c3 == 'o') ||
+            (state.a3 == 'o' && state.b2 == 'o' && state.c1 == 'o')){
+              state.vencedor = 'O';
+        }
 
         this.setState(state);
     }
 
+    restart(){
+      let state = this.state;
+      state.vez = 'x';
+      state.a1 = '';
+      state.a2 = '';
+      state.a3 = '';
+      state.b1 = '';
+      state.b2 = '';
+      state.b3 = '';
+      state.c1 = '';
+      state.c2 = '';
+      state.c3 = '';
+      state.vencedor = '';
+
+      this.setState(state);
+    }
+
     render() {
-    return (
+      return (
 
-      <View style={styles.container}>
-        <StatusBar hidden={true} />
+        <View style={styles.container}>
+          <StatusBar hidden={true} />
 
-        <View style={styles.content}>
-            <View style={[styles.rowVertical, {borderLeftWidth: 0}]}>
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('a1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
-                    <View>
-                        {this.state.a1 == 'x' && <X/>}
-                        {this.state.a1 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>                
-                
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('a2')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.a2 == 'x' && <X/>}
-                        {this.state.a2 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>        
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('a3')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.a3 == 'x' && <X/>}
-                        {this.state.a3 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>        
-            </View>
-            <View style={styles.rowVertical}>
-            <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('b1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
-                    <View>
-                        {this.state.b1 == 'x' && <X/>}
-                        {this.state.b1 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>                
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('b2')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.b2 == 'x' && <X/>}
-                        {this.state.b2 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>        
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('b3')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.b3 == 'x' && <X/>}
-                        {this.state.b3 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>
-            </View>
-            <View style={styles.rowVertical}>
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('c1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
-                    <View>
-                        {this.state.c1 == 'x' && <X/>}
-                        {this.state.c1 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>                
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('c2')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.c2 == 'x' && <X/>}
-                        {this.state.c2 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>        
-                <TouchableOpacity underlayColor='#eee' onPress={()=> {this.clicou('c3')}} style={styles.rowHorizontal}>
-                    <View>
-                        {this.state.c3 == 'x' && <X/>}
-                        {this.state.c3 == 'o' && <O/>}
-                    </View>    
-                </TouchableOpacity>
-            </View>
-        </View> 
+          <View style={styles.content}>
+              <View style={[styles.rowVertical, {borderLeftWidth: 0}]}>
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('a1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
+                      <View>
+                          {this.state.a1 == 'x' && <X/>}
+                          {this.state.a1 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>                
+                  
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('a2')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.a2 == 'x' && <X/>}
+                          {this.state.a2 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>        
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('a3')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.a3 == 'x' && <X/>}
+                          {this.state.a3 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>        
+              </View>
+              <View style={styles.rowVertical}>
+              <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('b1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
+                      <View>
+                          {this.state.b1 == 'x' && <X/>}
+                          {this.state.b1 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>                
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('b2')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.b2 == 'x' && <X/>}
+                          {this.state.b2 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>        
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('b3')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.b3 == 'x' && <X/>}
+                          {this.state.b3 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>
+              </View>
+              <View style={styles.rowVertical}>
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('c1')}} style={[styles.rowHorizontal, {borderTopWidth: 0}]}>
+                      <View>
+                          {this.state.c1 == 'x' && <X/>}
+                          {this.state.c1 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>                
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('c2')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.c2 == 'x' && <X/>}
+                          {this.state.c2 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>        
+                  <TouchableOpacity underlayColor='#eee' onPress={()=> {this.click('c3')}} style={styles.rowHorizontal}>
+                      <View>
+                          {this.state.c3 == 'x' && <X/>}
+                          {this.state.c3 == 'o' && <O/>}
+                      </View>    
+                  </TouchableOpacity>
+              </View>
+          </View> 
 
-        <View style={styles.areaContainer}>
-          <View style={styles.areaContent}>
-            <Text>Vez de:</Text>
-            {this.state.vez == 'x' && <X/>}
-            {this.state.vez == 'o' && <O/>}
+          <View style={styles.areaContainer}>
+            <View style={styles.areaContent}>
+              <Text>Vez de:</Text>
+              {this.state.vez == 'x' && <X/>}
+              {this.state.vez == 'o' && <O/>}
+            </View>
+            <View style={styles.containerVencedor}> 
+              { (this.state.vencedor != '') &&  <Text style={styles.textVencedor}>{this.state.vencedor+" venceu!"} </Text> }
+            </View>
+
+            <TouchableOpacity onPress={this.restart}>
+              <View>
+                <Text>Reiniciar o jogo</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-          <View style={styles.textVencedor}>
-            <Text>X venceu!</Text>
-          </View>
+        
+          
         </View>
-      
-         
-      </View>
 
     );
   }
@@ -163,8 +209,12 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60
   },
+  containerVencedor:{
+    justifyContent: 'flex-end',
+  },
   textVencedor:{
-    justifyContent: 'center',
-    alignItems: 'center',
+    left: 18,
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 })
